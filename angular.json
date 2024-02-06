@@ -88,6 +88,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "pecs-app:build:production",
+              "serveTarget": "pecs-app:serve:production"
+            },
+            "development": {
+              "buildTarget": "pecs-app:build:development",
+              "serveTarget": "pecs-app:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

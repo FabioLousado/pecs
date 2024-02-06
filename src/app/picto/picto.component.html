@@ -1,0 +1,5 @@
+<div style="width: fit-content;" >
+    <img [src]="picto.data" alt="Image" style="width: 100px; height: auto;">
+    <p style="text-align: center;">{{picto.nom}}</p>
+    <button (click)="addPicto();" [hidden]="picto.id">+</button>
+</div>

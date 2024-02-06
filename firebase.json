@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "pecs-app",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

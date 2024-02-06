@@ -1,0 +1,21 @@
+
+<body>
+    <label>Recherche : </label>
+    <input type="text" [(ngModel)]="search">
+    <button (click)="recherche();" [disabled]="!search">Rechercher</button>
+    
+    <div class="container">
+    
+        <!-- Grid container -->
+        <div class="grid-container">
+            <ng-container *ngFor="let picto of pictoService.picto">
+                <app-picto [picto]="picto" (haveAdded)="haveAddedPicto()"></app-picto>
+            </ng-container>
+        </div>
+    
+    
+        <ng-container *ngFor="let picto of listPicto">
+            <app-picto [picto]="picto"></app-picto>
+        </ng-container>
+    </div>
+</body>

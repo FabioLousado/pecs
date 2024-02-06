@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pecs-ee8b1": {
+      "hosting": {
+        "pecs-app": [
+          "pecs-ee8b1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pecs-ee8b1"
+  }
+}
