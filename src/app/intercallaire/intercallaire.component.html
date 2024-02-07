@@ -20,6 +20,6 @@
     <div class="container">
         <button (click)="addPictoFromFile();">Ajouter un picto a partir de vos fichiers</button>
 
-        <app-add-picto *ngIf="showAddPictoFromFile"></app-add-picto>
+        <app-add-picto *ngIf="showAddPictoFromFile" (endOfAdd)="readPicto();"></app-add-picto>
     </div>
 </body>

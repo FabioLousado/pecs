@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PictoService } from '../services/picto/picto.service';
 import { Picto } from '../classes/Picto';
 
@@ -12,6 +12,8 @@ import { Picto } from '../classes/Picto';
 export class AddPictoComponent {
 
   picto = new Picto('', '', '');
+
+  @Output() endOfAdd = new EventEmitter<void>();
 
   constructor(private pictoService : PictoService){}
 
@@ -32,7 +34,8 @@ export class AddPictoComponent {
 
 
   ajouter(){
-    this.pictoService.addPicto(this.picto).then(_ => console.log("Ajout OK"));
+    this.pictoService.addPicto(this.picto).then(
+      _ => this.endOfAdd.emit());
   }
 
 }
