@@ -1,10 +1,9 @@
 <body>
-    <div class="container" style="width: fit-content; height: fit-content;  background-color: {{colors[pageNumber]}};">
+    <div class="container" style="background-color: yellow;">
         <div class="grid-container">
             <ng-container *ngFor="let picto of listPicto">
                 <app-picto [picto]="picto" (haveSelected)="onSelectPicto($event)"></app-picto>
             </ng-container>
         </div>
     </div>
-
 </body>

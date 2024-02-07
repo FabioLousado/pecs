@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { PictoComponent } from '../picto/picto.component';
 import { CommonModule } from '@angular/common';
 import { Intercallaire } from '../classes/Intercallaire';
@@ -14,7 +14,7 @@ import { Picto } from '../classes/Picto';
   imports: [CommonModule, PictoComponent, FormsModule, AddPictoComponent],
   styleUrls: ['./intercallaire.component.css']
 })
-export class IntercallaireComponent implements OnInit {
+export class IntercallaireComponent implements OnInit, OnChanges {
 
   @Input() pageNumber : number = 0; 
 
@@ -32,15 +32,19 @@ export class IntercallaireComponent implements OnInit {
     this.readPicto();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+      this.readPicto()
+  }
+
   async readPicto() {
+    let index = 15*this.pageNumber
     this.listPicto = await this.pictoService.getPictos();
+    this.listPicto = this.listPicto.slice(index, index + 15)
   }
 
   haveAddedPicto(){
     this.readPicto();
   }
-
-
 
   onSelectPicto(picto : Picto){
     if(picto){
