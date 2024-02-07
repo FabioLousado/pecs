@@ -12,10 +12,14 @@
                 <app-picto [picto]="picto" (haveAdded)="haveAddedPicto()"></app-picto>
             </ng-container>
         </div>
-    
-    
         <ng-container *ngFor="let picto of listPicto">
             <app-picto [picto]="picto"></app-picto>
         </ng-container>
+    </div>
+
+    <div class="container">
+        <button (click)="addPictoFromFile();">Ajouter un picto a partir de vos fichiers</button>
+
+        <app-add-picto *ngIf="showAddPictoFromFile"></app-add-picto>
     </div>
 </body>
