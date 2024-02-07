@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PictoComponent } from '../picto/picto.component';
 import { CommonModule } from '@angular/common';
 import { Intercallaire } from '../classes/Intercallaire';
 import { PictoService } from '../services/picto/picto.service';
 import { FormsModule } from '@angular/forms';
 import { AddPictoComponent } from '../add-picto/add-picto.component';
+import { Picto } from '../classes/Picto';
 
 @Component({
   selector: 'app-intercallaire',
@@ -15,15 +16,18 @@ import { AddPictoComponent } from '../add-picto/add-picto.component';
 })
 export class IntercallaireComponent implements OnInit {
 
-  intercallaire = new Intercallaire([]);
+  @Input() pageNumber : number = 0; 
 
-  search = ""
+  colors = ['red', 'green', 'yellow', 'purple']
+
+  intercallaire = new Intercallaire([]);
 
   listPicto : any
 
-  showAddPictoFromFile = false;
 
-  constructor(public pictoService: PictoService) { }
+  @Output() putOnBandePhrase = new EventEmitter<Picto>();
+
+  constructor(public pictoService: PictoService) {}
 
   ngOnInit(): void {
     this.readPicto();
@@ -37,12 +41,11 @@ export class IntercallaireComponent implements OnInit {
     this.readPicto();
   }
 
-  recherche() {
-    this.pictoService.search(this.search);
-    this.search = ""
-  }
 
-  addPictoFromFile(){
-    this.showAddPictoFromFile = !this.showAddPictoFromFile
+
+  onSelectPicto(picto : Picto){
+    if(picto){
+      this.putOnBandePhrase.emit(picto);
+    }
   }
 }

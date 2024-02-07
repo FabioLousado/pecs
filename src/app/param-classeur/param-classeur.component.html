@@ -1,0 +1,18 @@
+<div class="container" style="padding-bottom: 10%;">
+    <div class="container">
+        <button (click)="addPictoFromFile();">Ajouter un picto a partir de vos fichiers</button>
+        <!-- (endOfAdd)="readPicto();" -->
+        <app-add-picto *ngIf="showAddPictoFromFile" ></app-add-picto>
+    </div>
+
+    <label>Recherche : </label>
+    <input type="text" [(ngModel)]="search">
+    <button (click)="recherche();" [disabled]="!search">Rechercher</button>
+</div>
+
+<!-- Grid container -->
+<div class="grid-container">
+    <ng-container *ngFor="let picto of pictoService.picto">
+        <app-picto [picto]="picto" (haveAdded)="haveAddedPicto()"></app-picto>
+    </ng-container>
+</div>

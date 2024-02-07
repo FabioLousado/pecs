@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { forkJoin, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, switchMap } from 'rxjs';
 import { Picto } from '../../classes/Picto';
 import { FirebaseApp } from '@angular/fire/app';
 import { Firestore, addDoc, collection, getDocs, query } from '@angular/fire/firestore';
@@ -13,6 +13,9 @@ export class PictoService {
   @Inject(FirebaseApp)
 
   picto: Picto[] = []
+
+  private selectedPictoSubject = new BehaviorSubject<Picto | null>(null);
+  selectedPicto$ = this.selectedPictoSubject.asObservable();
 
   constructor(private http: HttpClient, private db : Firestore) { }
 
@@ -72,5 +75,9 @@ export class PictoService {
       this.picto.push(new Picto('', name, event.target.result));
     };
     reader.readAsDataURL(data);
+  }
+
+  setSelectedPicto(picto: Picto) {
+    this.selectedPictoSubject.next(picto);
   }
 }

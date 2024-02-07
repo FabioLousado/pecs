@@ -11,13 +11,21 @@ import { Picto } from '../classes/Picto';
 })
 export class PictoComponent implements OnInit {
   @Input() picto: Picto = new Picto('', '', '')
+  @Input() canBeDeleted: boolean = false
 
   posX = 0
   posY = 0
 
   @Output() haveAdded = new EventEmitter<void>();
+  @Output() haveSelected = new EventEmitter<Picto>();
+  @Output() removeFromBandePhrase = new EventEmitter<string>();
 
   constructor(private pictoService: PictoService) { }
+
+  onSelectPicto() {
+    this.haveSelected.emit(this.picto);
+  }
+
 
   ngOnInit(): void {
   }
@@ -27,32 +35,16 @@ export class PictoComponent implements OnInit {
     this.haveAdded.emit();
   }
 
-  onMouseDown(event: MouseEvent) {
-    // Stockez les coordonnées de la souris au moment du clic
-    let startX = event.clientX;
-    let startY = event.clientY;
+  performClick(){
+    if(this.canBeDeleted){
+      this.removeFromPhrase();
+    }
+    else{
+      this.onSelectPicto();
+    }
+  }
 
-    // Écoutez les mouvements de la souris et mettez à jour les coordonnées en conséquence
-    const mouseMoveListener = (moveEvent: MouseEvent) => {
-      // Calculez le déplacement par rapport aux coordonnées du clic initial
-      const deltaX = moveEvent.clientX - startX;
-      const deltaY = moveEvent.clientY - startY;
-
-      // Mettez à jour les coordonnées de la div
-      this.posX += deltaX;
-      this.posY += deltaY;
-
-      // Mettez à jour les coordonnées de départ pour le prochain déplacement
-      startX = moveEvent.clientX;
-      startY = moveEvent.clientY;
-    };
-
-    // Écoutez l'événement mousemove pour suivre les mouvements de la souris
-    document.addEventListener('mousemove', mouseMoveListener);
-
-    // Supprimez l'écouteur de mouvement lorsque la souris est relâchée
-    document.addEventListener('mouseup', () => {
-      document.removeEventListener('mousemove', mouseMoveListener);
-    });
+  removeFromPhrase(){
+    this.removeFromBandePhrase.emit(this.picto.id);
   }
 }

@@ -1,1 +1,16 @@
-<p>classeur works!</p>
+<div class="horizontal-container">
+    <button class="horizontal-button" (click)="changePage(-1);" [disabled]="page == 0">&#9664;</button>
+    <div>
+        <app-intercallaire class="horizontal-intercallaire" [pageNumber]="page"
+            (putOnBandePhrase)="sendToBandePhrase($event);"></app-intercallaire>
+        <app-bande-phrase [pictos]="listPictoPhrase"></app-bande-phrase>
+    </div>
+    <button class="horizontal-button" (click)="changePage(1);">&#9654;</button>
+</div>
+
+<button class="horizontal-button" (click)="openSettings()">
+    <i class="fas fa-cog"></i>
+</button>
+<div *ngIf="showSettings">
+    <app-param-classeur></app-param-classeur>
+</div>

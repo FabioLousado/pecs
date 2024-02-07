@@ -1,0 +1,7 @@
+<body>
+    <div class="container" style="width: 610px; height: 150px; background-color: cyan;">
+        <ng-container *ngFor="let picto of pictos">
+            <app-picto [picto]="picto" [canBeDeleted]="true" (removeFromBandePhrase)="removeFromPictos($event)"></app-picto>
+        </ng-container>
+    </div>
+</body>

@@ -1,0 +1,12 @@
+.horizontal-container {
+    display: flex; /* Use flexbox for horizontal layout */
+    align-items: center; /* Align items vertically in the center */
+  }
+  
+  .horizontal-button {
+    margin: 0 10px; /* Add spacing between buttons */
+  }
+  
+  .horizontal-intercallaire {
+    flex: 1; /* Allow the intercalaire component to grow and fill available space */
+  }
