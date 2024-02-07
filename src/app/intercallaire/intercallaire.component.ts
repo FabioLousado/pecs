@@ -24,7 +24,6 @@ export class IntercallaireComponent implements OnInit {
 
   listPicto : any
 
-
   @Output() putOnBandePhrase = new EventEmitter<Picto>();
 
   constructor(public pictoService: PictoService) {}

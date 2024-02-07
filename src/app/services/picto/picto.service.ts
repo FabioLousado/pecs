@@ -24,7 +24,6 @@ export class PictoService {
       name: picto.nom,
       data: picto.data
     });
-    console.log("Document written with ID: ", docRef.id);
   }
 
   async getPictos() {
@@ -66,7 +65,6 @@ export class PictoService {
       }
     )
   }
-
 
   addData(data: Blob, name: string = "") {
     const reader = new FileReader();
